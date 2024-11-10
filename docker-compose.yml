@@ -1,0 +1,27 @@
+version: '3'
+services:
+  source-db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: source
+    ports:
+      - "5432:5432"
+    networks:
+      - poster-network
+
+  dw-db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: dw
+    ports:
+      - "5433:5432"
+    networks:
+      - poster-network
+
+networks:
+  poster-network:
+    driver: bridge
